@@ -1,6 +1,6 @@
 package day5;
 
-
+/*
 import java.util.List;
 import java.util.Scanner;
 public class boj15649_answer {
@@ -50,6 +50,6 @@ public class boj15649_answer {
             // 근데 쓸꺼면 ?
             // depth도 있어야하고.
 
-        }
-    }
-}
+//        }
+//    }
+//}
