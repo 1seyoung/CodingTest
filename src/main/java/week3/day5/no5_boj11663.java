@@ -1,2 +1,4 @@
-package week3.day5;public class no5_boj11663 {
+package week3.day5;
+
+public class no5_boj11663 {
 }
