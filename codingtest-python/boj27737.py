@@ -19,14 +19,14 @@ def dfs(x,y,n,board):
     while queue:
         cur_x, cur_y = queue.popleft()
 
-    for i in range(4):
-        nx = cur_x + dx[i]
-        ny = cur_y + dy[i]
+        for i in range(4):
+            nx = cur_x + dx[i]
+            ny = cur_y + dy[i]
 
-        if 0 <= nx <n and 0<= ny < n and board[nx][ny]==0:
-            count +=1
-            board[nx][ny] = 1
-            queue.append((nx,ny))
+            if 0 <= nx <n and 0<= ny < n and board[nx][ny]==0:
+                count +=1
+                board[nx][ny] = 1
+                queue.append((nx,ny))
     return count
 
 def count_space(N,K,board):
