@@ -37,8 +37,8 @@ public class Main {
 
 
                 }
+                
                 if(idx== -1){
-                    idx =0;
                     System.out.println(0);
                 } else {
                     System.out.println(idx+1);
@@ -50,6 +50,8 @@ public class Main {
                 for(int k = s-1; k <=e-1;k++){
                     System.out.print(arr[k]+" ");
                 }
+
+                System.out.println();
             }
         }
 
