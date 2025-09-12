@@ -34,12 +34,16 @@ public class Main {
                         idx = j;
                         break;
                     }
-                    if(idx== -1){
-                        idx =0;
-                    }
+
 
                 }
-                System.out.println(idx+1);
+                if(idx== -1){
+                    idx =0;
+                    System.out.println(0);
+                } else {
+                    System.out.println(idx+1);
+                }
+                 
             } else if(input == 3){
                 int s = sc.nextInt();
                 int e = sc.nextInt();
