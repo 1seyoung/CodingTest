@@ -37,17 +37,23 @@ public class Main {
 
         // N2-(N1 -1) -> N2-N1+1
 
-        int X = N2-N1+1;
+        int X = N1-N2+1;
+        boolean match = false;
 
         for(int i = 0; i< X; i++ ){
-            int[] slice = Arrays.copyOfRange(arrA, i, i+N2-1);
-            if(slice == arrB){
-                System.out.print("Yes");
+            int[] slice = Arrays.copyOfRange(arrA, i, i+N2);
+            if(Arrays.equals(slice, arrB)){
+                match = true;
                 break;
             }
         }
 
-        System.out.print("No");
+        if(match){
+            System.out.print("Yes");
+        } else{
+            System.out.print("No");
+        }
+        
 
 
     }
