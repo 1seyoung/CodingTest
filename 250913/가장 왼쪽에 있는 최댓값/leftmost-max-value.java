@@ -18,19 +18,19 @@ public class Main {
         ArrayList<Integer> maxValueIdx = new ArrayList<>();
         
         boolean flag = false;
-        
+        int right = N - 1;
         while(!flag){
             int max = Integer.MIN_VALUE;;
             int maxIdx = -1;
-            for(int i = 0; i <N; i++){
+            for(int i = 0; i <right; i++){
                 if(max < arr[i]){
                     max = arr[i];
-                    maxIdx = i;
+                    maxIdx = i; //2
                 }
             }
 
             maxValueIdx.add(maxIdx+1);
-            N = (N - maxIdx );
+            right = maxIdx - 1;
 
             if(maxIdx ==0){
                 flag = true;
