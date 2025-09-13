@@ -22,7 +22,7 @@ public class Main {
         while(!flag){
             int max = Integer.MIN_VALUE;;
             int maxIdx = -1;
-            for(int i = 0; i <right; i++){
+            for(int i = 0; i <=right; i++){
                 if(max < arr[i]){
                     max = arr[i];
                     maxIdx = i; //2
