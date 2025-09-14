@@ -5,9 +5,9 @@ public class Main {
         String input = sc.next();
         // Please write your code here.
 
-        String reverse = new StringBuilder(input).reverse.toString();
+        String reverse = new StringBuilder(input).reverse().toString();
         if(reverse.equals(input)){
-            System.out.print("Yse");
+            System.out.print("Yes");
         } else {
             System.out.print("No");
         }
