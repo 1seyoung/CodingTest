@@ -4,7 +4,7 @@ public class Main {
         // Please write your code here.
         Scanner sc = new Scanner(System.in);
 
-        int input = sc.nextInt();
+        String input = sc.next();
 
         System.out.println(input);
         System.out.println(input);
