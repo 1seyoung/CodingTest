@@ -7,7 +7,7 @@ public class Main {
         int m = sc.nextInt();
 
         int gdcValue = gdc(n,m);
-        int lcmValue = n * m/gdcValue
+        int lcmValue = n * m/gdcValue;
 
         System.out.print(lcmValue);
 
@@ -19,7 +19,8 @@ public class Main {
             a=b;
             b = temp;
         }
+            return a;
     }
 
-    return a;
+
 }
