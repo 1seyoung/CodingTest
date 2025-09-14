@@ -5,20 +5,20 @@ public class Main {
         int n = sc.nextInt();
         // Please write your code here.
 
-
-        printStar(n);
+        int m = n;
+        printStar(n,m);
     }
 
-    public static void printStar(int n){
-        if(n==0){
+    public static void printStar(int n, int m){
+        if(m==0){
             return;
         }
 
-        for(int i = 0; i <n;i++){
+        for(int i = 0; i <n-m+1;i++){
             System.out.print("*");
         }
         System.out.println();
-        printStar(n-1);
+        printStar(n,m-1);
     }
 
 
