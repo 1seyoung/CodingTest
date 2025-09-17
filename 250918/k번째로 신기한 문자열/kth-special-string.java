@@ -5,17 +5,19 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
         String t = sc.next();
+        int length = t.length();
         String[] words = new String[n];
         int m = 0;
         for (int i = 0; i < n; i++) {
             String s = sc.next();
-            if (s.length() >= 2) {              // ✅ 길이가 충분할 때만
-                String part = s.substring(0, 2);
-                if (part.equals(t)) {
+            if (s.length() >= length){
+                String part = s.substring(0,length);
+                if(part.equals(t)){
                     words[m] = s;
-                    m += 1;
+                    m+=1;
                 }
             }
+
         }
         // Please write your code here.
 
