@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class Main {
         }
         // Please write your code here.
 
-        int[] arr2 = Arrays.sort(arr)
+        Arrays.sort(arr);
 
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i]+" ");
