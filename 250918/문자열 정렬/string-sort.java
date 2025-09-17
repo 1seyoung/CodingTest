@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -7,5 +7,12 @@ public class Main {
 
 
         char[] arr = s.toCharArray();
+
+        Arrays.sort(arr);
+
+        String result = new String(arr);
+        System.out.println(result);
+
+
     }
 }
