@@ -5,7 +5,7 @@ public class Main {
     static char[] lastColor;
     static int curIdx;
     static int line;
-    static int offset = 31; // 음수 좌표 방지용
+    static int offset = 100; // 음수 좌표 방지용
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
