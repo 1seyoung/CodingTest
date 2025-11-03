@@ -1,24 +1,29 @@
 import java.util.*;
-
+import java.io.*;
 public class Main {
-    static char[][] tile;
-    static char[] lastColor;
-    static int curIdx;
-    static int line;
-    static int offset = 200001; // 음수 좌표 방지용
+    static char[][] tile;       // 각 명령(line)마다 색칠 기록
+    static char[] lastColor;    // 최종 타일 색상
+    static int curIdx;          // 현재 위치 인덱스
+    static int line;            // 현재 명령 번호
+    static int offset;          // 좌표 기준점 (음수 방지용)
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+
+
+        offset = 200001;
 
         tile = new char[n][offset];
-        lastColor = new char[offset];
-        curIdx = offset / 2; // 시작점을 가운데로
+        lastColor  = new char[offset];
+
+        curIdx = offset /2;
         line = 0;
 
-        for (int i = 0; i < n; i++) {
-            int x = sc.nextInt();
-            char dir = sc.next().charAt(0);
+        for(int i = 0; i<n;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            char dir = st.nextToken().charAt(0);
             coloringTile(x, dir);
         }
 
@@ -26,43 +31,52 @@ public class Main {
         int bCount = 0;
         int gCount = 0;
 
-        // 각 칸의 최종 색상 통계 계산
-        for (int j = 0; j < offset; j++) {
-            int blackCnt = 0;
+        // 각 칸별 최종 색상 통계
+        for(int j = 0; j <offset; j++){
+            int balckCnt = 0;
             int whiteCnt = 0;
-
-            for (int i = 0; i < n; i++) {
-                if (tile[i][j] == 'B') blackCnt++;
-                if (tile[i][j] == 'W') whiteCnt++;
+            
+            for(int i = 0; i < n ; i++){
+                if(tile[i][j] == 'B') balckCnt++;
+                if(tile[i][j] == 'W') whiteCnt++;
             }
 
-            if (blackCnt >= 2 && whiteCnt >= 2) {
+            if(balckCnt >= 2 && whiteCnt >=2) {
                 gCount++;
-            } else {
-                if (lastColor[j] == 'W') wCount++;
-                if (lastColor[j] == 'B') bCount++;
             }
-        }
+            else{
+                if (lastColor[j] =='W') wCount++;
+                if (lastColor[j] == 'B') bCount++;
 
-        System.out.println(wCount + " " + bCount + " " + gCount);
-        sc.close();
+            }
+
+        }
+                System.out.println(wCount + " " + bCount + " " + gCount);
+
     }
 
-    public static void coloringTile(int x, char dir) {
-        if (dir == 'R') {
-            for (int i = curIdx; i < curIdx + x; i++) {
+    public static void coloringTile(int x , char dir){
+        if(dir == 'R'){
+            for(int i = curIdx; i < curIdx +x; i++){
                 tile[line][i] = 'B';
                 lastColor[i] = 'B';
             }
-            if (x > 1) curIdx += x - 1; // 현재 위치 포함이므로 x-1칸만 이동
+
+            if(x > 1) curIdx += x-1;
+
             line++;
-        } else { // L
-            for (int i = curIdx; i > curIdx - x; i--) {
+        }
+
+        if(dir =='L'){
+            for(int i = curIdx; i > curIdx - x; i--){
                 tile[line][i] = 'W';
                 lastColor[i] = 'W';
             }
-            if (x > 1) curIdx -= x - 1;
+            if(x > 1) curIdx -= x-1;
+
             line++;
         }
+
+        
     }
 }
