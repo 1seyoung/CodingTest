@@ -21,7 +21,7 @@ public class Main {
                     block[j] = 'B';
                 }
 
-                curPos = curPos +x-1;
+                curPos = (curPos +x-1);
             }
 
             if(d == 'L'){
@@ -29,7 +29,7 @@ public class Main {
                 for(int j = curPos; j> curPos-x; j--){
                     block[j] = 'W';
                 }
-                curPos = curPos -x-1;
+                curPos = (curPos -x+1);
             }
         }
 
