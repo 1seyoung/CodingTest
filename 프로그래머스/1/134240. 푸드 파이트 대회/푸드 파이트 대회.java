@@ -21,20 +21,12 @@ class Solution {
                 temp --;
             }
         }
+        
+        StringBuilder sb2 = new StringBuilder(sb).reverse();
+
         sb.append(0);
-        
-        for(int i = food.length - 1; i > 0 ; i--){
-            int temp = food[i];
-            while(temp > 0 ){
-                sb.append(i);
-                temp --;
-            }
-        }
-        
-        
-        
-        
-        
+        sb.append(sb2);
+                
         
         return sb.toString();
     }
