@@ -19,9 +19,8 @@ class Solution {
             if(numRow % 2 == 1){
 
                 int sum = ((numRow) * w) + ((numRow) * w) +1;
-                System.out.println("!!! "+sum);
                 num = sum - num;
-                System.out.println("!!! "+num);
+
                 if(num <= n){
                     answers.add(num);
                     numRow += 1;
@@ -32,10 +31,8 @@ class Solution {
             } else  {
                 int sum = (((numRow-1) * w) + 1) + ((numRow+1) * w) ;
                 
-                System.out.println("??? "+sum);
 
                 num = sum - num;
-                System.out.println("??? "+num);
                 if(num <= n){
                     answers.add(num);
                     numRow += 1;
@@ -43,10 +40,6 @@ class Solution {
                     break;
                 }               
             }
-        }
-        
-        for(int ss : answers){
-            //System.out.println(ss);
         }
 
         return answers.size() +1;
