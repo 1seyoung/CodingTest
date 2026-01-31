@@ -1,76 +1,113 @@
 import java.util.*;
 class Solution {
+    int[] leftPosition = {3,0};
+    int[] rightPosition = {3,2};
     public String solution(int[] numbers, String hand) {
-        // 엄지로 눌러
+         // 엄지는 상하좌우
+        // 키패드 이동 한칸은 거리 1
+        // 엄지 규칙
+        // 상하좌우의 움직임
         
-        // 왼엄 : * -> 상하좌우(한칸단 1) // 1,4,7(가장 왼쪽 열)
-        // 오엄 : * -> 상하좌우(한칸단 1) // 3,6,7(가장 오른쪽 열)
-        // 가운데열 : 2,5,8,0(두 엄지 현재 키패드의 위치에서 더 가까운 엄지 사용)(같으면 오른손잡이 -> 오엄 / 반대)
+        //1 4 7 -> 왼손
+        // 3 7 9 -> 오른손
+        // 2 5 8 0 -> 가까운것 , 거리가 같으면 오른소잡이는 오 , 왼손잡이는 왼
         
-        // numbers > 눌러야하는 것
-        // hand -> 오른손잡이/왼손잡이 여부
-        // 1  2  3
-        // 4  5  6
-        // 7  8  9
-        // 10 11 12 
-        int[] lIdx = {3,0};
-        int[] rIdx = {3,2};
+        StringBuilder answer = new StringBuilder();
         
-        StringBuilder sb = new StringBuilder();
+        //  (0,0) (0,1) (0,2)
+        //  (1,0) (1,1) (1,2)
+        //  (2,0) (2,1) (2,2)
+        //  (3,0) (3,1) (3,2)
         
-        for(int num : numbers){
-            if(num == 1 || num == 4 || num == 7){
-                sb.append("L");
+        // 시작점
+        // 왼손 -> 3,0
+        // 오른손 -> 3,2
+        
+        Set<Integer> leftNum = new HashSet<>(Arrays.asList(1,4,7));
+        Set<Integer> rightNum = new HashSet<>(Arrays.asList(3,6,9));
+        
+        for(int num : numbers) {
+            
+            if(leftNum.contains(num)){
+                answer.append("L");
+                leftPosition = extractPosition(num);
                 
-                lIdx = extractIdx(num);
-            } else if(num == 3 || num == 6 || num == 9 ){
-                sb.append("R");
-                rIdx = extractIdx(num);
-            }else {
-                int[] target = extractIdx(num);
+            }else if(rightNum.contains(num)){
+                answer.append("R");
+                rightPosition = extractPosition(num);
+            } else {
                 
-                int ld = extractDistance(target, lIdx);
-                int rd = extractDistance(target, rIdx);
+                int r = calculateDistance(rightPosition, num);
+                int l = calculateDistance(leftPosition, num);
                 
-                if(ld == rd){
-                    if(hand.equals("right")){
-                        // 오른손잡이면
-                        sb.append("R");
-                        rIdx = extractIdx(num);
+                if(r==l) {
+                    if(hand.equals("right")) {
+                        answer.append("R");
+                        rightPosition = extractPosition(num);
                     } else {
-                        // 왼손잡이면
-                        sb.append("L");
-                        lIdx = extractIdx(num);
+                        answer.append("L");
+                        leftPosition = extractPosition(num);
                     }
-                } else if(ld < rd){
-                    // 왼손으로
-                    sb.append("L");
-                    lIdx = extractIdx(num);
-                } else {
-                        sb.append("R");
-                        rIdx = extractIdx(num);
+                } 
+                if(r<l) {
+                    answer.append("R");
+                    rightPosition = extractPosition(num);
                 }
-            }
+                if(r>l) {
+                    answer.append("L");
+                    leftPosition = extractPosition(num);
+                }
+            } 
+            
+            
+        
         }
         
-        return sb.toString();
+        return answer.toString();
     }
     
-    public int[] extractIdx(int num){
-        if(num == 0){
-            int[] extract = {3, 1};
-            return extract;
-        }else{
-                    
-            int row = (num-1) / 3;
-            int col = (num-1) % 3;
-            int[] extract = {row, col};
-            return extract;
+    public int calculateDistance(int[] cur, int nextNum) {
+        
+        int[] next = extractPosition(nextNum);
+        
+        return Math.abs(cur[0] - next[0]) + Math.abs(cur[1] - next[1]); 
+    }
+    
+    public int[] extractPosition(int num){
+        // 좌표 도출
+        if(num == 0) {
+            return new int[]{3,1};
         }
+        if(num == 1) {
+            return new int[]{0,0};
+        }
+        if(num == 2) {
+            return new int[]{0,1};
+        }
+        if(num == 3) {
+            return new int[]{0,2};
+        }
+        if(num == 4) {
+            return new int[]{1,0};
+        }
+        if(num == 5) {
+            return new int[]{1,1}  ;
+        }
+        if(num == 6) {
+            return new int[]{1,2} ;
+        }
+        if(num == 7) {
+            return new int[]{2,0}  ;
+        }
+        if(num == 8) {
+            return new int[]{2,1} ; 
+        }
+        if(num == 9) {
+            return new int[]{2,2}  ;
+        }
+        
+        
+        return new int[]{};
 
-    }
-    
-    public int extractDistance(int[] target , int[] crr){
-        return Math.abs(target[0] - crr[0]) + Math.abs(target[1] - crr[1]);
     }
 }
